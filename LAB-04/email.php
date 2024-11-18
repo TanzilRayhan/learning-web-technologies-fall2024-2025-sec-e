@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['submit'])) {
-    $name = $_GET['email'];
+    $email = $_GET['email'];
 
     if ($email == null) {
         echo "No Input";
