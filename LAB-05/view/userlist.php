@@ -31,7 +31,7 @@ $users = getAllUser();
                 <td><?= $user['email'] ?></td>
                 <td>
                     <a href="../controller/deleteUser.php?id=<?= $user['id'] ?>">Delete</a> |
-                    <a href="../controller/updateUser.php?id=<?= $user['id'] ?>">Update</a>
+                    <a href="../view/editUser.php?id=<?= $user['id'] ?>">Update</a>
                 </td>
             </tr>
         <?php } ?>
