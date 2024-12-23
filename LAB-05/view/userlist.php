@@ -15,6 +15,7 @@ $users = getAllUser();
     <title>User List</title>
 </head>
 <body>
+<a href="../view/home.php">Home</a>
     <h2>User List</h2>
     <table border="1" cellpadding="10">
         <tr>
