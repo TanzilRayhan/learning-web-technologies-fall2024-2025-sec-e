@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyCompass - Home</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -12,12 +12,12 @@
         <div class="container">
             <ul class="nav-links">
                 <li><a href="" id="logo">StudyCompass</a></li>
-                <li><a href="#">Home</a></li>
+                <li><a href="">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#" id="btnLogin">Login</a></li>
-                <li><a href="#" id="btnReg">Register</a></li>
+                <li><a href="../view/login.php" id="btnLogin">Login</a></li>
+                <li><a href="../view/register.php" id="btnReg">Register</a></li>
    
             </ul>
         </div>
