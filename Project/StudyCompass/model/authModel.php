@@ -79,12 +79,32 @@ function addUser($name, $email, $username, $password, $age, $dob, $gender, $addr
 
 function deleteUser($id)
 {
-    $con = getConnection();
+    $conn = getConnection();
     $sql = "DELETE FROM users WHERE id='{$id}'";
 
-    if (mysqli_query($con, $sql)) {
+    if (mysqli_query($conn, $sql)) {
         return true;
     } else {
         return false;
     }
+}
+
+function updateUser($id, $name, $email, $username, $password, $age, $dob, $gender, $address)
+{
+    $conn = getConnection();
+    $sql = "UPDATE users SET name='{$name}',email='{$email}', username='{$username}', password='{$password}',age='{$age}', dob='{$dob}', gender='{$gender}', address='{$address}' WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getTotalUsers() {
+  $conn = getConnection();
+  $sql = "SELECT COUNT(*) AS total FROM users";
+  $result = mysqli_query($conn, $sql);
+  $data = mysqli_fetch_assoc($result);
+  return $data['total'];
 }

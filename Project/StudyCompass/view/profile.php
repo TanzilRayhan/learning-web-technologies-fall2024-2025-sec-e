@@ -41,7 +41,7 @@ if ($user === false) {
     </nav>
     <div class="profile-container">
         <div class="profile-card">
-            <h1>User Profile</h1>
+            <h1>Profile Information</h1>
             <table>
                 <tr>
                     <th>Full Name</th>

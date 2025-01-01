@@ -393,21 +393,17 @@ section h2 {
     color: #0077b6;
 }
 
-button {
+#userButton {
     background-color: #0077b6;
     color: white;
     border: none;
     padding: 0.7rem 1.5rem;
-    margin-top: 1rem;
     cursor: pointer;
     border-radius: 5px;
     text-decoration: none;
 }
-button a{
-    text-decoration: none;
-    color: white;
-}
-button:hover {
+
+#userButton:hover {
     background-color: #005f87;
 }
 

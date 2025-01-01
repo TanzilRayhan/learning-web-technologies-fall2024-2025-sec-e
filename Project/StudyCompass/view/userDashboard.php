@@ -53,7 +53,7 @@ if ($user === false) {
                     <li><a href="#">Saved Universities</a></li>
                     <li><a href="#">Scholarships</a></li>
                     <li><a href="#">Articles</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="../controller/logout.php">Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -66,7 +66,7 @@ if ($user === false) {
                 <p><strong>Email:</strong> <?= htmlspecialchars($user['email']); ?></p>
                 <p><strong>Age:</strong> <?= htmlspecialchars($user['age']); ?></p>
                 <p><strong>Date of Birth:</strong> <?= htmlspecialchars($user['dob']); ?></p>
-                <button><a href="../view/profile.php">Edit Profile</a></button>
+               <a id="userButton" href="../controller/editUser.php?id=<?= $user['id'] ?>">Edit Profile</a>
             </section>
 
             <section id="userWidget" class="bookmarks">
@@ -76,7 +76,7 @@ if ($user === false) {
                     <li>AI and Machine Learning Scholarship</li>
                     <li>10 Tips for Effective Study</li>
                 </ul>
-                <button>Manage Bookmarks</button>
+                <button id="userButton">Manage Bookmarks</button>
             </section>
 
             <section id="userWidget" class="notifications">

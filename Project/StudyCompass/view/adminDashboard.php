@@ -12,6 +12,7 @@ if (!isset($_COOKIE['status']) && !isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 
 require_once('../model/authModel.php');
+$totalUsers = getTotalUsers();
 
 $users = getAllUser($username);
 
@@ -40,13 +41,14 @@ if ($users === false) {
                 <li><a href="#">About</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="../view/profile.php" id="btnReg">Profile</a></li>
+                <li><a href="../controller/logout.php" id="btnLogin">Logout</a></li>
             </ul>
         </div>
     </nav>
     <div class="admin-container">
         <aside class="sidebar">
-            <h2>Admin Dashboard</h2>
+            <h2>Dashboard</h2>
+            <hr>
             <nav>
                 <ul>
                     <li><a href="#">User Management</a></li>
@@ -55,7 +57,7 @@ if ($users === false) {
                     <li><a href="#">Manage Articles</a></li>
                     <li><a href="#">System Analytics</a></li>
                     <li><a href="#">Settings</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="../controller/logout.php">Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -65,7 +67,7 @@ if ($users === false) {
             <section class="overview">
                 <div class="card">
                     <h3>Total Users</h3>
-                    <p>1,250</p>
+                    <p><?= number_format($totalUsers) ?></p>
                 </div>
                 <div class="card">
                     <h3>Active Universities</h3>
@@ -102,7 +104,7 @@ if ($users === false) {
                                 <td><?= $user['username'] ?></td>
                                 <td>
                                     <a href="../controller/deleteUser.php?id=<?= $user['id'] ?>">Delete</a> |
-                                    <a href="../view/editUser.php?id=<?= $user['id'] ?>">Update</a>
+                                    <a href="../controller/editUser.php?id=<?= $user['id'] ?>">Update</a>
                                 </td>
                             </tr>
                         <?php } ?>
