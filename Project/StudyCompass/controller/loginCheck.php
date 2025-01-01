@@ -16,12 +16,12 @@ if(isset($_POST['submit'])) {
 
         if ($admin) {
             $_SESSION['username'] = $username;
-            setcookie('status', 'true', time() + 3600, '/');
+            setcookie('status', 'true', time() + 10000, '/');
             header('location: ../view/adminDashboard.php');
             exit();
         } elseif ($user) {
             $_SESSION['username'] = $username;
-            setcookie('status', 'true', time() + 3600, '/');
+            setcookie('status', 'true', time() + 10000, '/');
             header('location: ../view/userDashboard.php');
             exit();
         } else {

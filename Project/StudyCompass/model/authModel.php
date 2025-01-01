@@ -27,28 +27,42 @@ function userLogin($username, $password)
   return false;
 }
 
-function getAdmin($username) {
+function getAdmin($username)
+{
   $conn = getConnection();
   $sql = "SELECT * FROM admins WHERE username='{$username}'";
   $result = mysqli_query($conn, $sql);
 
   if (mysqli_num_rows($result) == 1) {
-      return mysqli_fetch_assoc($result);
+    return mysqli_fetch_assoc($result);
   }
   return false;
 }
 
-function getUser($username) {
+function getUser($username)
+{
   $conn = getConnection();
   $sql = "SELECT * FROM users WHERE username='{$username}'";
   $result = mysqli_query($conn, $sql);
 
-  if (mysqli_num_rows($result) == 1) {
-      return mysqli_fetch_assoc($result);
+  if ($result && mysqli_num_rows($result) == 1) {
+    return mysqli_fetch_assoc($result);
   }
   return false;
 }
 
+function getAllUser()
+{
+  $con = getConnection();
+  $sql = "SELECT * FROM users";
+  $result = mysqli_query($con, $sql);
+
+  $users = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $users[] = $row;
+  }
+  return $users;
+}
 
 function addUser($name, $email, $username, $password, $age, $dob, $gender, $address)
 {
@@ -63,4 +77,14 @@ function addUser($name, $email, $username, $password, $age, $dob, $gender, $addr
   }
 }
 
-?>
+function deleteUser($id)
+{
+    $con = getConnection();
+    $sql = "DELETE FROM users WHERE id='{$id}'";
+
+    if (mysqli_query($con, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
