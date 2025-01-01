@@ -20,7 +20,7 @@
         <div class="form-container login-container">
             <h2>Login</h2>
             <hr>
-            <form>
+            <form method="post" action="../controller/loginCheck.php">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" required>
@@ -30,7 +30,7 @@
                     <input type="password" name="password" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit">Login</button>
+                    <button type="submit" name="submit">Login</button>
                 </div>
             </form>
             <div class="switch">

@@ -1,11 +1,17 @@
+<?php
+session_start();
+require_once('../model/authModel.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyCompass - Home</title>
     <link rel="stylesheet" href="../assets/styles.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -15,13 +21,28 @@
                 <li><a href="">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="../view/login.php" id="btnLogin">Login</a></li>
-                <li><a href="../view/register.php" id="btnReg">Register</a></li>
-   
+
+                <?php if (isset($_SESSION['username'])): ?>
+                    <?php
+                    $username = $_SESSION['username'];
+                    $admin = getAdmin($username);
+                    $user = getUser($username);
+                    ?>
+
+                    <?php if ($admin): ?>
+                        <li><a href="../view/adminDashboard.php">Admin Dashboard</a></li>
+                    <?php elseif ($user): ?>
+                        <li><a href="../view/userDashboard.php">User Dashboard</a></li>
+                    <?php endif; ?>
+
+                    <li><a href="../controller/logout.php" id="btnLogin">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="../view/login.php" id="btnLogin">Login</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -29,8 +50,8 @@
             <h1>Empowering Bangladeshi Students <br> for Global Education</h1>
             <p>Your pathway to studying abroad starts here. <br>Discover universities, scholarships, and more!</p>
             <div class="hero-buttons">
-                <a href="#" class="btn primary">Get Started</a>
-                <a href="#" class="btn secondary">Learn More</a>
+                <a href="../view/login.php" class="btn primary">Get Started</a>
+                <a href="./view/aboutUs.html" class="btn secondary">Learn More</a>
             </div>
         </div>
     </section>
@@ -46,7 +67,10 @@
                 <li><a href="#">Support</a></li>
             </ul>
         </div>
-        <div><p>StudyCompass &copy; 2024. All rights reserved.</p></div>
+        <div>
+            <p>StudyCompass &copy; 2024. All rights reserved.</p>
+        </div>
     </footer>
 </body>
+
 </html>

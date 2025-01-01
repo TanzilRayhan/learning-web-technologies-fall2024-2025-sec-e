@@ -20,7 +20,7 @@
         <div class="form-container register-container">
             <h2>Register</h2>
             <hr>
-            <form>
+            <form method="post" action="../controller/registerCheck.php">
                 <div class="row">
                     <div class="form-group">
                         <label for="name">Full Name</label>
@@ -34,11 +34,11 @@
                 <div class="row">
                     <div class="form-group">
                         <label for="reg-username">Username</label>
-                        <input type="text" name="reg-username" required>
+                        <input type="text" name="username" required>
                     </div>
                     <div class="form-group">
                         <label for="reg-password">Password</label>
-                        <input type="password" name="reg-password" required>
+                        <input type="password" name="password" required>
                     </div>
                 </div>
                 <div class="row">
@@ -48,11 +48,11 @@
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <select name="gender" required>
-                            <option value="">Select</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                        <select name="gender" id="gender" required>
+                            <option name="gender" value="">Select</option>
+                            <option name="gender" value="male">Male</option>
+                            <option name="gender" value="female">Female</option>
+                            <option name="gender" value="other">Other</option>
                         </select>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit">Register</button>
+                    <button name="submit" type="submit">Register</button>
                 </div>
             </form>
             <div class="switch">

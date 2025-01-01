@@ -2,9 +2,9 @@
 
 function getConnection()
 {
-    $con = mysqli_connect('localhost', 'root', '', 'study_compass');
-    if (!$con) {
+    $conn = mysqli_connect('127.0.0.1', 'root', '', 'study_compass');
+    if (!$conn) {
         die("Connection Failed!");
     }
-    return $con;
+    return $conn;
 }
