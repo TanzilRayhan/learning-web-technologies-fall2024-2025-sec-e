@@ -34,9 +34,9 @@ if ($user === false) {
             <ul class="nav-links">
                 <li><a href="../view/home.php" id="logo">StudyCompass</a></li>
                 <li><a href="../view/home.php">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Scholarships</a></li>
+                <li><a href="#">Visa Updates</a></li>
+                <li><a href="#">Rankings</a></li>
                 <li><a href="../view/profile.php" id="btnReg">Profile</a></li>
             </ul>
         </div>

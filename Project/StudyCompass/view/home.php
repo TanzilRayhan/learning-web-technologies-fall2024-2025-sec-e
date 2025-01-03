@@ -19,8 +19,10 @@ require_once('../model/authModel.php');
             <ul class="nav-links">
                 <li><a href="" id="logo">StudyCompass</a></li>
                 <li><a href="">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
+                <li><a href="#">Scholarships</a></li>
+                <li><a href="#">Visa Updates</a></li>
+                <li><a href="#">Rankings</a></li>
+                <li><a href="../view/newsArticles.php">News & Articles</a></li>
 
                 <?php if (isset($_SESSION['username'])): ?>
                     <?php

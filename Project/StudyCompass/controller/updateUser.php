@@ -3,7 +3,7 @@ session_start();
 require_once('../model/authModel.php');
 
 if (isset($_REQUEST['submit'])) {
-    $id = $_REQUEST['id'];  // Get the user ID from the form
+    $id = $_REQUEST['id']; 
     $name = trim($_REQUEST['name']);
     $email = trim($_REQUEST['email']);
     $username = trim($_REQUEST['username']);
@@ -16,7 +16,6 @@ if (isset($_REQUEST['submit'])) {
     if (empty($id) || empty($name) || empty($email) || empty($username) || empty($password) || empty($age) || empty($dob) || empty($gender) || empty($address)) {
         echo "All fields are required!";
     } else {
-        // Hash the password before updating
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
         $status = updateUser($id, $name, $email, $username, $hashed_password, $age, $dob, $gender, $address);

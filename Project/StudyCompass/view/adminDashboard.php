@@ -14,9 +14,26 @@ $username = $_SESSION['username'];
 require_once('../model/authModel.php');
 $totalUsers = getTotalUsers();
 
+$admins = getAllAdmin($username);
+
+if ($admins === false) {
+    echo "Error: User data not found.";
+    exit();
+}
+
 $users = getAllUser($username);
 
 if ($users === false) {
+    echo "Error: User data not found.";
+    exit();
+}
+
+require_once('../model/newsModel.php');
+$totalNews = getTotalNews();
+
+$articles = getAllNews();
+
+if ($articles === false) {
     echo "Error: User data not found.";
     exit();
 }
@@ -38,9 +55,9 @@ if ($users === false) {
             <ul class="nav-links">
                 <li><a href="../view/home.php" id="logo">StudyCompass</a></li>
                 <li><a href="../view/home.php">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Scholarships</a></li>
+                <li><a href="#">Visa Updates</a></li>
+                <li><a href="#">Rankings</a></li>
                 <li><a href="../controller/logout.php" id="btnLogin">Logout</a></li>
             </ul>
         </div>
@@ -51,12 +68,11 @@ if ($users === false) {
             <hr>
             <nav>
                 <ul>
-                    <li><a href="#">User Management</a></li>
+                    <li><a href="../view/adminRegister.php">Admin Management</a></li>
                     <li><a href="#">Manage Universities</a></li>
                     <li><a href="#">Manage Scholarships</a></li>
-                    <li><a href="#">Manage Articles</a></li>
-                    <li><a href="#">System Analytics</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Manage Events</a></li>
+                    <li><a href="../view/newsAdmin.php">Manage Articles</a></li>
                     <li><a href="../controller/logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -79,10 +95,37 @@ if ($users === false) {
                 </div>
                 <div class="card">
                     <h3>Articles</h3>
-                    <p>45</p>
+                    <p><?= number_format($totalNews) ?></p>
                 </div>
             </section>
-
+            <section class="user-management">
+                <h2>Recent Admin Activity</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SL.</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($admins as $admin) { ?>
+                            <tr>
+                                <td><?= $admin['id'] ?></td>
+                                <td><?= $admin['name'] ?></td>
+                                <td><?= $admin['email'] ?></td>
+                                <td><?= $admin['username'] ?></td>
+                                <td>
+                                    <a href="../controller/deleteAdmin.php?id=<?= $admin['id'] ?>">Delete</a> |
+                                    <a href="../controller/editAdmin.php?id=<?= $admin['id'] ?>">Update</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </section>
             <section class="user-management">
                 <h2>Recent User Activity</h2>
                 <table>

@@ -24,31 +24,31 @@
                 <div class="row">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" required>
+                        <input type="text" name="name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" required>
+                        <input type="email" name="email">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
                         <label for="reg-username">Username</label>
-                        <input type="text" name="username" required>
+                        <input type="text" name="username">
                     </div>
                     <div class="form-group">
                         <label for="reg-password">Password</label>
-                        <input type="password" name="password" required>
+                        <input type="password" name="password">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
                         <label for="age">Age</label>
-                        <input type="number" name="age" required>
+                        <input type="number" name="age">
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <select name="gender" id="gender" required>
+                        <select name="gender" id="gender">
                             <option name="gender" value="">Select</option>
                             <option name="gender" value="male">Male</option>
                             <option name="gender" value="female">Female</option>
@@ -59,11 +59,11 @@
                 <div class="row">
                     <div class="form-group">
                         <label for="dob">Date of Birth</label>
-                        <input type="date" name="dob" required>
+                        <input type="date" name="dob">
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" required>
+                        <input type="text" name="address">
                     </div>
                 </div>
 

@@ -43,35 +43,34 @@ $user = mysqli_fetch_assoc($result);
         <div class="form-container register-container">
             <h2>Edit User</h2>
             <form method="post" action="../controller/updateUser.php">
-                <!-- Hidden ID Field to Pass User ID -->
                 <input type="hidden" name="id" value="<?= $user['id'] ?>">
 
                 <div class="row">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" value="<?= htmlspecialchars($user['name']) ?>" required>
+                        <input type="text" name="name" value="<?= ($user['name']) ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                        <input type="email" name="email" value="<?= ($user['email']) ?>" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
                         <label for="reg-username">Username</label>
-                        <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
+                        <input type="text" name="username" value="<?= ($user['username']) ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="reg-password">Password</label>
-                        <input type="password" name="password" value="<?= htmlspecialchars($user['password']) ?>">
+                        <input type="password" name="password" value="<?= ($user['password']) ?>">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
                         <label for="age">Age</label>
-                        <input type="number" name="age" value="<?= htmlspecialchars($user['age']) ?>" required>
+                        <input type="number" name="age" value="<?= ($user['age']) ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender</label>
@@ -86,11 +85,11 @@ $user = mysqli_fetch_assoc($result);
                 <div class="row">
                     <div class="form-group">
                         <label for="dob">Date of Birth</label>
-                        <input type="date" name="dob" value="<?= htmlspecialchars($user['dob']) ?>" required>
+                        <input type="date" name="dob" value="<?= ($user['dob']) ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" value="<?= htmlspecialchars($user['address']) ?>" required>
+                        <input type="text" name="address" value="<?= ($user['address']) ?>" required>
                     </div>
                 </div>
 

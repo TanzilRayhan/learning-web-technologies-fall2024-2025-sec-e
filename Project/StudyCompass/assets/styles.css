@@ -252,7 +252,7 @@ body {
 .sidebar nav ul li a {
     color: white;
     text-decoration: none;
-    display: block;
+    display: block;;
     padding: 0.5rem;
 }
 
@@ -458,7 +458,168 @@ td {
   background-color: #f9f9f9;
 }
 
-
 tr:hover td {
   background-color: #f1f5ff;
+}
+
+/* news & articles */
+
+.news-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.news-header {
+  background-color: #0077b6;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.news-header h1 {
+  margin: 0;
+}
+
+.news-nav {
+  margin-top: 1rem;
+}
+
+.news-nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.news-nav a:hover {
+  text-decoration: underline;
+}
+
+.news-main {
+  margin-top: 2rem;
+}
+
+.news-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.news-article {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.news-article h2 {
+  margin: 0 0 1rem;
+  color: #0077b6;
+}
+
+.news-article p {
+  color: #555;
+}
+
+.news-btn {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.news-btn:hover {
+  background-color: #005f87;
+}
+
+.news-btn.delete {
+  background-color: #d9534f;
+}
+
+.news-btn.delete:hover {
+  background-color: #c9302c;
+}
+
+/* create articles */
+
+.addArticles-container {
+  width: 60%;
+  margin: 3rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.addArticles-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.addArticles-header h1 {
+  color: #333;
+}
+
+.addArticles-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addArticles-group {
+  margin-bottom: 1.5rem;
+}
+
+.addArticles-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #0077b6;
+}
+
+.addArticles-group input,
+.addArticles-group select,
+.addArticles-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.addArticles-group textarea {
+  resize: vertical;
+}
+
+.addArticles-group input[type="file"] {
+  padding: 0.5rem;
+}
+
+.addArticles-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addArticles-btn {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.addArticles-btn:hover {
+  background-color: #005f87;
+}
+
+.addArticles-btn.reset {
+  background-color: #d9534f;
+}
+
+.addArticles-btn.reset:hover {
+  background-color: #c9302c;
 }

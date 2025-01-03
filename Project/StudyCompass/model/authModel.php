@@ -39,6 +39,19 @@ function getAdmin($username)
   return false;
 }
 
+function getAllAdmin()
+{
+  $con = getConnection();
+  $sql = "SELECT * FROM admins";
+  $result = mysqli_query($con, $sql);
+
+  $users = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $users[] = $row;
+  }
+  return $users;
+}
+
 function getUser($username)
 {
   $conn = getConnection();
@@ -64,6 +77,19 @@ function getAllUser()
   return $users;
 }
 
+function addAdmin($name, $email, $username, $password)
+{
+  $conn = getConnection();
+  $sql = "INSERT INTO admins (name, email, username, password) 
+          VALUES ('{$name}', '{$email}', '{$username}', '{$password}')";
+  if (mysqli_query($conn, $sql)) {
+    return true;
+  } else {
+    error_log("MySQL Error: " . mysqli_error($conn));
+    return false;
+  }
+}
+
 function addUser($name, $email, $username, $password, $age, $dob, $gender, $address)
 {
   $conn = getConnection();
@@ -77,10 +103,34 @@ function addUser($name, $email, $username, $password, $age, $dob, $gender, $addr
   }
 }
 
+function deleteAdmin($id)
+{
+    $conn = getConnection();
+    $sql = "DELETE FROM admins WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function deleteUser($id)
 {
     $conn = getConnection();
     $sql = "DELETE FROM users WHERE id='{$id}'";
+
+    if (mysqli_query($conn, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function updateAdmin($id, $name, $email, $username, $password)
+{
+    $conn = getConnection();
+    $sql = "UPDATE admins SET name='{$name}',email='{$email}', username='{$username}', password='{$password}' WHERE id='{$id}'";
 
     if (mysqli_query($conn, $sql)) {
         return true;

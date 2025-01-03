@@ -27,6 +27,6 @@ if (isset($_REQUEST['submit'])) {
         }
     }
 } else {
-    header('location: ../view/register.html');
+    header('location: ../view/register.php');
     exit();
 }
