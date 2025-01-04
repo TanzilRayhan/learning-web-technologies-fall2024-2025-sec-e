@@ -59,7 +59,7 @@ body {
   text-align: center;
   padding: 5rem 0;
   color: #fff;
-  background: url("../assets/scholarshipBG.jpg") no-repeat center;
+  background: url("../assets/images/scholarshipBG.jpg") no-repeat center;
   position: relative;
   min-height: 50vh;
 }
@@ -531,7 +531,7 @@ tr:hover td {
 }
 
 .news-btn:hover {
-  background-color: #005f87;
+  background-color: #023e8a;
 }
 
 .news-btn.delete {
@@ -587,14 +587,6 @@ tr:hover td {
   border-radius: 5px;
   font-size: 1rem;
   box-sizing: border-box;
-}
-
-.addArticles-group textarea {
-  resize: vertical;
-}
-
-.addArticles-group input[type="file"] {
-  padding: 0.5rem;
 }
 
 .addArticles-buttons {

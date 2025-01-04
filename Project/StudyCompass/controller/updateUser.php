@@ -22,7 +22,7 @@ if (isset($_REQUEST['submit'])) {
 
         if ($status) {
             $_SESSION['success_message'] = "User updated successfully!";
-            header('location: ../view/home.php');
+            header('location: ../view/adminDashboard.php');
             exit();
         } else {
             $_SESSION['error_message'] = "Update failed. Try again.";
