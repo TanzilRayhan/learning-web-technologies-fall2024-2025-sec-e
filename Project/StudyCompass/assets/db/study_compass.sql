@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2025 at 09:15 AM
+-- Generation Time: Jan 04, 2025 at 09:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -65,10 +65,10 @@ CREATE TABLE `news_articles` (
 --
 
 INSERT INTO `news_articles` (`id`, `title`, `category`, `content`) VALUES
-(13, 'Global Scholarship Opportunities for 2025', 'Scholarships', 'As 2025 approaches, numerous universities and organizations are rolling out new scholarship opportunities for international students. \r\n  These scholarships cover a wide range of disciplines, allowing students from different academic backgrounds to apply. \r\n  Some notable programs include full-ride scholarships, partial funding, and specialized grants for research and innovation. \r\n  Students are encouraged to start their application process early and prepare strong personal statements and recommendation letters \r\n  to maximize their chances of success. Here is a detailed breakdown of the top 10 scholarships currently available and how to apply for them.'),
-(14, 'Upcoming Changes to Visa Policies in 2024', 'Visa Updates', 'The new year will bring significant changes to the visa policies affecting international students. \r\n  Countries like the United States, Canada, and Australia are expected to introduce new requirements for student visas, \r\n  including financial proof, language proficiency tests, and stricter background checks. \r\n  These changes aim to enhance security measures and streamline the visa process, ensuring better integration of international students \r\n  into academic institutions. Prospective students must stay updated with the latest policy announcements and seek guidance from their \r\n  respective embassies or immigration offices.'),
-(15, 'Ranking the Best Universities for Engineering in 2024', 'University Rankings', 'The 2024 university rankings have been released, showcasing the best institutions for engineering across the globe. \r\n  Massachusetts Institute of Technology (MIT) continues to lead the list, followed closely by Stanford and Cambridge. \r\n  The rankings are based on various criteria, including research output, student satisfaction, employability, and faculty expertise. \r\n  Aspiring engineers can use these rankings to identify the best programs that align with their career goals. \r\n  Additionally, many of these institutions offer generous funding packages and scholarships to attract top talent from around the world.'),
-(16, 'Tips for Thriving as an International Student', 'Tips and Stories', 'Adjusting to life in a new country can be challenging for international students. \r\n  From managing finances to adapting to new cultural norms, the transition requires careful planning and resilience. \r\n  In this article, experienced international students share their top tips for thriving abroad, including building a strong support network, \r\n  participating in student organizations, and utilizing campus resources. \r\n  The key takeaway is to stay proactive and seek help when needed, ensuring a fulfilling and successful educational experience.');
+(1, 'Global Scholarship Opportunities for 2025', 'Scholarships', 'As 2025 approaches, numerous universities and organizations are rolling out new scholarship opportunities for international students. \r\n  These scholarships cover a wide range of disciplines, allowing students from different academic backgrounds to apply. \r\n  Some notable programs include full-ride scholarships, partial funding, and specialized grants for research and innovation. \r\n  Students are encouraged to start their application process early and prepare strong personal statements and recommendation letters \r\n  to maximize their chances of success. Here is a detailed breakdown of the top 10 scholarships currently available and how to apply for them.'),
+(2, 'Upcoming Changes to Visa Policies in 2024', 'Visa Updates', 'The new year will bring significant changes to the visa policies affecting international students. \r\n  Countries like the United States, Canada, and Australia are expected to introduce new requirements for student visas, \r\n  including financial proof, language proficiency tests, and stricter background checks. \r\n  These changes aim to enhance security measures and streamline the visa process, ensuring better integration of international students \r\n  into academic institutions. Prospective students must stay updated with the latest policy announcements and seek guidance from their \r\n  respective embassies or immigration offices.'),
+(3, 'Ranking the Best Universities for Engineering in 2024', 'University Rankings', 'The 2024 university rankings have been released, showcasing the best institutions for engineering across the globe. \r\n  Massachusetts Institute of Technology (MIT) continues to lead the list, followed closely by Stanford and Cambridge. \r\n  The rankings are based on various criteria, including research output, student satisfaction, employability, and faculty expertise. \r\n  Aspiring engineers can use these rankings to identify the best programs that align with their career goals. \r\n  Additionally, many of these institutions offer generous funding packages and scholarships to attract top talent from around the world.'),
+(4, 'Tips for Thriving as an International Student', 'Tips and Stories', 'Adjusting to life in a new country can be challenging for international students. \r\n  From managing finances to adapting to new cultural norms, the transition requires careful planning and resilience. \r\n  In this article, experienced international students share their top tips for thriving abroad, including building a strong support network, \r\n  participating in student organizations, and utilizing campus resources. \r\n  The key takeaway is to stay proactive and seek help when needed, ensuring a fulfilling and successful educational experience.');
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `news_articles`
 --
 ALTER TABLE `news_articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -15,10 +15,8 @@ if (isset($_REQUEST['submit'])) {
 
     if (empty($id) || empty($name) || empty($email) || empty($username) || empty($password) || empty($age) || empty($dob) || empty($gender) || empty($address)) {
         echo "All fields are required!";
-    } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        
-        $status = updateUser($id, $name, $email, $username, $hashed_password, $age, $dob, $gender, $address);
+    } else {        
+        $status = updateUser($id, $name, $email, $username, $password, $age, $dob, $gender, $address);
 
         if ($status) {
             $_SESSION['success_message'] = "User updated successfully!";

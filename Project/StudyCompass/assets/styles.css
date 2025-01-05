@@ -226,6 +226,7 @@ body {
 .admin-container {
     display: flex;
     width: 100%;
+    position: relative;
 }
 
 .sidebar {
@@ -233,6 +234,9 @@ body {
     background-color: #0077b6;
     color: white;
     padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
 }
 
 .sidebar h2 {
@@ -335,6 +339,7 @@ body {
 .dashboard-container {
     display: flex;
     width: 100%;
+    position: relative;
 }
 
 .sidebar {
@@ -342,6 +347,9 @@ body {
     background-color: #0077b6;
     color: white;
     padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
 }
 
 .sidebar h2 {
@@ -545,8 +553,8 @@ tr:hover td {
 /* create articles */
 
 .addArticles-container {
-  width: 60%;
-  margin: 3rem auto;
+  width: 50%;
+  margin: 1rem auto;
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
@@ -555,7 +563,6 @@ tr:hover td {
 
 .addArticles-header {
   text-align: center;
-  margin-bottom: 2rem;
 }
 
 .addArticles-header h1 {
