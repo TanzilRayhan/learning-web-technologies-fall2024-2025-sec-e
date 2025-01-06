@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (!isset($_COOKIE['status'])) {
+if (!isset($_COOKIE['admin'])) {
     header('location: login.php');
 }
 
-if (!isset($_COOKIE['status']) && !isset($_SESSION['username'])) {
+if (!isset($_COOKIE['admin']) && !isset($_SESSION['username'])) {
     header('location: login.php');
     exit();
 }

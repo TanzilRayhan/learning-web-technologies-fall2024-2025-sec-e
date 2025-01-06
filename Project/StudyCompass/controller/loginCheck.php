@@ -16,12 +16,12 @@ if (isset($_POST['submit'])) {
 
         if ($admin && $password === $admin['password']) {
             $_SESSION['username'] = $username;
-            setcookie('status', 'true', time() + 10000, '/');
+            setcookie('admin', 'true', time() + 10000, '/');
             header('location: ../view/adminDashboard.php');
             exit();
         } elseif ($user && $password === $user['password']) {
             $_SESSION['username'] = $username;
-            setcookie('status', 'true', time() + 10000, '/');
+            setcookie('user', 'true', time() + 10000, '/');
             header('location: ../view/userDashboard.php');
             exit();
         } else {
