@@ -6,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Article</title>
     <link rel="stylesheet" href="../assets/styles.css">
+    <script>
+        function validateForm() {
+            var title = document.getElementById("title").value.trim();
+            var category = document.getElementById("category").value.trim();
+            var content = document.getElementById("content").value.trim();
+
+            if (title === "") {
+                alert("Title is required.");
+                document.getElementById("title").focus();
+                return false;
+            }
+
+            if (category === "") {
+                alert("Category is required.");
+                document.getElementById("category").focus();
+                return false;
+            }
+
+            if (content === "") {
+                alert("Content is required.");
+                document.getElementById("content").focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -27,7 +54,7 @@
             <h1>Add New Article</h1>
         </header>
         <main class="addArticles-main">
-            <form method="post" action="../controller/createNews.php" class="addArticles-form">
+            <form method="post" action="../controller/createNews.php" class="addArticles-form" onsubmit="return validateForm()">
                 <div class="addArticles-group">
                     <label for="title">Article Title</label>
                     <input type="text" id="title" name="title">

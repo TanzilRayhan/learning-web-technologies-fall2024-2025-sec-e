@@ -29,6 +29,40 @@ $admin = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyCompass - Home</title>
     <link rel="stylesheet" href="../assets/styles.css">
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var username = document.getElementById("username").value.trim();
+            var password = document.getElementById("password").value.trim();
+
+            if( name === "") {
+                alert("Name is required.");
+                document.getElementById("name").focus();
+                return false;
+            }
+
+            if (email === "") {
+                alert("Email is required.");
+                document.getElementById("email").focus();
+                return false;
+            }
+
+            if (username === "") {
+                alert("Username is required.");
+                document.getElementById("username").focus();
+                return false;
+            }
+
+            if (password === "") {
+                alert("Password is required.");
+                document.getElementById("password").focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -42,28 +76,28 @@ $admin = mysqli_fetch_assoc($result);
     <div class="form">
         <div class="form-container register-container">
             <h2>Edit Admin</h2>
-            <form method="post" action="../controller/updateAdmin.php">
+            <form method="post" action="../controller/updateAdmin.php" onsubmit="return validateForm()">
                 
                 <input type="hidden" name="id" value="<?= $admin['id'] ?>">
                 <div class="row">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" value="<?= ($admin['name']) ?>" required>
+                        <input type="text" name="name" value="<?= ($admin['name']) ?>" id="name">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" value="<?= ($admin['email']) ?>" required>
+                        <input type="email" name="email" value="<?= ($admin['email']) ?>" id="email">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
                         <label for="reg-username">Username</label>
-                        <input type="text" name="username" value="<?= ($admin['username']) ?>" required>
+                        <input type="text" name="username" value="<?= ($admin['username']) ?>" id="username">
                     </div>
                     <div class="form-group">
                         <label for="reg-password">Password</label>
-                        <input type="password" name="password" value="<?= ($admin['password']) ?>">
+                        <input type="password" name="password" value="<?= ($admin['password']) ?>" id="password">
                     </div>
                 </div>
                 <div class="form-group">
