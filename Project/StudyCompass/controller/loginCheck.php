@@ -25,9 +25,10 @@ if (isset($_POST['submit'])) {
             header('location: ../view/userDashboard.php');
             exit();
         } else {
-            $_SESSION['error'] = "Invalid username or password!";
-            header('location: ../view/login.php');
+            echo "Invalid Username or Password!";
+            header("Refresh: 2; URL=../view/login.php");
             exit();
+    
         }
     }
 } else {
