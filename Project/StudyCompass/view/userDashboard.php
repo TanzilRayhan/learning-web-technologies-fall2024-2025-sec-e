@@ -1,15 +1,11 @@
 <?php
 session_start();
-if (!isset($_COOKIE['user'])) {
-    header('location: login.php');
-}
-
-if (!isset($_COOKIE['user']) && !isset($_SESSION['username'])) {
-    header('location: login.php');
+if (!isset($_SESSION['user'])) {
+    header('location: ../view/login.php');
     exit();
 }
 
-$username = $_SESSION['username'];
+$username = $_SESSION['user'];
 
 require_once('../model/authModel.php');
 

@@ -1,5 +1,10 @@
 <?php
 session_start();
+if(!isset($_SESSION['user'])){
+    header('location: ../view/login.php');
+    exit();
+}
+
 require_once('../model/authModel.php');
 
 $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;

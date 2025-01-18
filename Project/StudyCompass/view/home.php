@@ -23,17 +23,20 @@ require_once('../model/authModel.php');
                 <li><a href="#">Visa Updates</a></li>
                 <li><a href="#">Rankings</a></li>
                 <li><a href="../view/newsArticles.php">News & Articles</a></li>
-
-                <?php if (isset($_SESSION['username'])): ?>
+                <?php if (isset($_SESSION['admin']) || isset($_SESSION['user'])): ?>
                     <?php
-                    $username = $_SESSION['username'];
-                    $admin = getAdmin($username);
-                    $user = getUser($username);
+                    if (isset($_SESSION['admin'])) {
+                        $username = $_SESSION['admin'];
+                        $admin = getAdmin($username);
+                    } elseif (isset($_SESSION['user'])) {
+                        $username = $_SESSION['user'];
+                        $user = getUser($username);
+                    }
                     ?>
 
-                    <?php if ($admin): ?>
+                    <?php if (isset($admin) && $admin): ?>
                         <li><a href="../view/adminDashboard.php">Admin Dashboard</a></li>
-                    <?php elseif ($user): ?>
+                    <?php elseif (isset($user) && $user): ?>
                         <li><a href="../view/userDashboard.php">User Dashboard</a></li>
                     <?php endif; ?>
 
@@ -41,6 +44,7 @@ require_once('../model/authModel.php');
                 <?php else: ?>
                     <li><a href="../view/login.php" id="btnLogin">Login</a></li>
                 <?php endif; ?>
+
             </ul>
         </div>
     </nav>

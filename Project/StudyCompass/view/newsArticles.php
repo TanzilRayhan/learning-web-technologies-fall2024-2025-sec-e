@@ -33,8 +33,7 @@ if ($articles === false) {
                 <li><a href="#">Scholarships</a></li>
                 <li><a href="#">Visa Updates</a></li>
                 <li><a href="#">Rankings</a></li>
-                <li><a href="../controller/logout.php" id="btnLogin">Logout</a></li>
-            </ul>
+                </ul>
         </div>
     </nav>
     <header class="news-header">

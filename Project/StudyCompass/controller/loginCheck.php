@@ -15,12 +15,12 @@ if (isset($_POST['submit'])) {
         $user = getUser($username);
 
         if ($admin && $password === $admin['password']) {
-            $_SESSION['username'] = $username;
+            $_SESSION['admin'] = $username;
             setcookie('admin', 'true', time() + 10000, '/');
             header('location: ../view/adminDashboard.php');
             exit();
         } elseif ($user && $password === $user['password']) {
-            $_SESSION['username'] = $username;
+            $_SESSION['user'] = $username;
             setcookie('user', 'true', time() + 10000, '/');
             header('location: ../view/userDashboard.php');
             exit();

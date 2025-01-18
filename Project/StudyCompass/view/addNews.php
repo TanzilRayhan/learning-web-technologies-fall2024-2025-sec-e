@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['admin'])) {
+    header('location: ../view/login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +53,7 @@
                 <li><a href="#">Visa Updates</a></li>
                 <li><a href="#">Rankings</a></li>
                 <li><a href="../view/newsArticles.php">News & Articles</a></li>
-                <li><a href="../view/userDashboard.php" id="btnReg">Dashboard</a></li>
+                <li><a href="../view/adminDashboard.php" id="btnReg">Dashboard</a></li>
             </ul>
         </div>
     </nav>

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['admin'])){
+    header('location: ../view/login.php');
+    exit();
+}
 require_once('../model/newsModel.php');
 
 $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
