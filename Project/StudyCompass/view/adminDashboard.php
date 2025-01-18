@@ -1,29 +1,42 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) {
-    header('location: ../view/login.php');
+if (!isset($_COOKIE['admin'])) {
+    header('location: login.php');
+}
+
+if (!isset($_COOKIE['admin']) && !isset($_SESSION['username'])) {
+    header('location: login.php');
     exit();
 }
+
+$username = $_SESSION['username'];
+
 require_once('../model/authModel.php');
-require_once('../model/newsModel.php');
+$totalUsers = getTotalUsers();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    $action = $_POST['action'];
+$admins = getAllAdmin($username);
 
-    if ($action === 'fetchAdmins') {
-        $admins = getAllAdmin();
-        echo json_encode($admins ?: []);
-        exit();
-    } elseif ($action === 'fetchUsers') {
-        $users = getAllUser();
-        echo json_encode($users ?: []);
-        exit();
-    }
+if ($admins === false) {
+    echo "Error: User data not found.";
     exit();
 }
 
-$totalUsers = getTotalUsers();
+$users = getAllUser($username);
+
+if ($users === false) {
+    echo "Error: User data not found.";
+    exit();
+}
+
+require_once('../model/newsModel.php');
 $totalNews = getTotalNews();
+
+$articles = getAllNews();
+
+if ($articles === false) {
+    echo "Error: User data not found.";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +47,6 @@ $totalNews = getTotalNews();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/styles.css">
-
 </head>
 
 <body>
@@ -57,7 +69,7 @@ $totalNews = getTotalNews();
             <hr>
             <nav>
                 <ul>
-                    <li><a href="../view/adminRegister.php">Admin Register</a></li>
+                    <li><a href="../view/adminRegister.php">Admin Management</a></li>
                     <li><a href="#">Manage Universities</a></li>
                     <li><a href="#">Manage Scholarships</a></li>
                     <li><a href="#">Manage Events</a></li>
@@ -99,7 +111,20 @@ $totalNews = getTotalNews();
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="admin-table-body"></tbody>
+                    <tbody>
+                        <?php foreach ($admins as $admin) { ?>
+                            <tr>
+                                <td><?= $admin['id'] ?></td>
+                                <td><?= $admin['name'] ?></td>
+                                <td><?= $admin['email'] ?></td>
+                                <td><?= $admin['username'] ?></td>
+                                <td>
+                                    <a href="../controller/deleteAdmin.php?id=<?= $admin['id'] ?>">Delete</a> |
+                                    <a href="../controller/editAdmin.php?id=<?= $admin['id'] ?>">Update</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
                 </table>
             </section>
             <section class="user-management">
@@ -114,7 +139,20 @@ $totalNews = getTotalNews();
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="user-table-body"></tbody>
+                    <tbody>
+                        <?php foreach ($users as $user) { ?>
+                            <tr>
+                                <td><?= $user['id'] ?></td>
+                                <td><?= $user['name'] ?></td>
+                                <td><?= $user['email'] ?></td>
+                                <td><?= $user['username'] ?></td>
+                                <td>
+                                    <a href="../controller/deleteUser.php?id=<?= $user['id'] ?>">Delete</a> |
+                                    <a href="../controller/editUser.php?id=<?= $user['id'] ?>">Update</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
                 </table>
             </section>
         </main>
