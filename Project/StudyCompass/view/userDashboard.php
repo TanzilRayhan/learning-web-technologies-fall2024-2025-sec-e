@@ -4,9 +4,7 @@ if (!isset($_SESSION['user'])) {
     header('location: ../view/login.php');
     exit();
 }
-
 $username = $_SESSION['user'];
-
 require_once('../model/authModel.php');
 
 function fetchUserData($username)
@@ -17,12 +15,10 @@ function fetchUserData($username)
     }
     return json_encode(['error' => 'User not found']);
 }
-
 if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'fetchUserData') {
     echo fetchUserData($username);
     exit();
 }
-
 $user = getUser($username);
 if (!$user) {
     echo "Error: User data not found.";
@@ -40,8 +36,7 @@ if (!$user) {
         function fetchUserProfile() {
             const xhr = new XMLHttpRequest();
             xhr.open('REQUEST', 'userDashboard.php?action=fetchUserData', true);
-
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
 
@@ -58,50 +53,49 @@ if (!$user) {
             xhr.send();
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             fetchUserProfile();
         });
     </script>
 </head>
 <body>
-<nav class="navbar">
-    <div class="container">
-        <ul class="nav-links">
-            <li><a href="../view/home.php" id="logo">StudyCompass</a></li>
-            <li><a href="../view/home.php">Home</a></li>
-            <li><a href="#">Scholarships</a></li>
-            <li><a href="#">Visa Updates</a></li>
-            <li><a href="#">Rankings</a></li>
-            <li><a href="../view/profile.php" id="btnReg">Profile</a></li>
-        </ul>
-    </div>
-</nav>
-<div class="dashboard-container">
-    <aside class="sidebar">
-        <h2>Dashboard</h2>
-        <hr>
-        <nav>
-            <ul>
-                <li><a href="#">Profile Information</a></li>
-                <li><a href="#">Saved Universities</a></li>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="../view/home.php" id="logo">StudyCompass</a></li>
+                <li><a href="../view/home.php">Home</a></li>
                 <li><a href="#">Scholarships</a></li>
-                <li><a href="#">Articles</a></li>
-                <li><a href="../controller/logout.php">Logout</a></li>
+                <li><a href="#">Visa Updates</a></li>
+                <li><a href="#">Rankings</a></li>
+                <li><a href="../view/profile.php" id="btnReg">Profile</a></li>
             </ul>
-        </nav>
-    </aside>
-
-    <main class="content">
-        <h1>Welcome, <?=$user['username']?></h1>
-        <section id="userWidget" class="profile-info">
-            <h2>Profile Information</h2>
-            <p><strong>Name:</strong> <span id="profile-name"></span></p>
-            <p><strong>Email:</strong> <span id="profile-email"></span></p>
-            <p><strong>Age:</strong> <span id="profile-age"></span></p>
-            <p><strong>Date of Birth:</strong> <span id="profile-dob"></span></p>
-            <a id="userButton" href="../controller/editUser.php?id=<?= $user['id'] ?>">Edit Profile</a>
-        </section>
-        <section id="userWidget" class="bookmarks">
+        </div>
+    </nav>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>Dashboard</h2>
+            <hr>
+            <nav>
+                <ul>
+                    <li><a href="#">Profile Information</a></li>
+                    <li><a href="#">Saved Universities</a></li>
+                    <li><a href="#">Scholarships</a></li>
+                    <li><a href="#">Articles</a></li>
+                    <li><a href="../controller/logout.php">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <h1>Welcome, <?= $user['username'] ?></h1>
+            <section id="userWidget" class="profile-info">
+                <h2>Profile Information</h2>
+                <p><strong>Name:</strong> <span id="profile-name"></span></p>
+                <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                <p><strong>Age:</strong> <span id="profile-age"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="profile-dob"></span></p>
+                <a id="userButton" href="../controller/editUser.php?id=<?= $user['id'] ?>">Edit Profile</a>
+            </section>
+            <section id="userWidget" class="bookmarks">
                 <h2>Bookmarks</h2>
                 <ul>
                     <li>Harvard University</li>
@@ -110,7 +104,6 @@ if (!$user) {
                 </ul>
                 <button id="userButton">Manage Bookmarks</button>
             </section>
-
             <section id="userWidget" class="notifications">
                 <h2>Recent Notifications</h2>
                 <ul>
@@ -119,7 +112,7 @@ if (!$user) {
                     <li>New article on Data Science available</li>
                 </ul>
             </section>
-    </main>
-</div>
+        </main>
+    </div>
 </body>
 </html>

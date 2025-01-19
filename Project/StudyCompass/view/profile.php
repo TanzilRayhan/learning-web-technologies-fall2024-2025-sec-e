@@ -5,29 +5,65 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-
 $username = $_SESSION['user'];
 
 require_once('../model/authModel.php');
 
-$user = getUser($username);
+if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'fetchProfile') {
+    $user = getUser($username);
 
-if ($user === false) {
-    echo "Error: User data not found.";
-    exit();
+    if ($user) {
+        echo json_encode($user);
+        exit();
+    } else {
+        echo json_encode(['error' => 'User data not found.']);
+        exit();
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="../assets/styles.css">
+    <script>
+        function fetchUserProfile() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('REQUEST', 'profile.php?action=fetchProfile', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.error) {
+                        alert(response.error);
+                        return;
+                    }
+                    renderUserProfile(response);
+                }
+            };
+
+            xhr.send();
+        }
+        function renderUserProfile(user) {
+            document.getElementById('profile-name').innerText = user.name;
+            document.getElementById('profile-email').innerText = user.email;
+            document.getElementById('profile-username').innerText = user.username;
+            document.getElementById('profile-age').innerText = user.age;
+            document.getElementById('profile-dob').innerText = user.dob;
+            document.getElementById('profile-gender').innerText = user.gender;
+            document.getElementById('profile-address').innerText = user.address;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchUserProfile();
+        });
+    </script>
 </head>
+
 <body>
-<nav class="navbar">
+    <nav class="navbar">
         <div class="container">
             <ul class="nav-links">
                 <li><a href="../view/home.php" id="logo">StudyCompass</a></li>
@@ -45,34 +81,35 @@ if ($user === false) {
             <table>
                 <tr>
                     <th>Full Name</th>
-                    <td><?= htmlspecialchars($user['name']); ?></td>
+                    <td id="profile-name"></td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><?= htmlspecialchars($user['email']); ?></td>
+                    <td id="profile-email"></td>
                 </tr>
                 <tr>
                     <th>Username</th>
-                    <td><?= htmlspecialchars($user['username']); ?></td>
+                    <td id="profile-username"></td>
                 </tr>
                 <tr>
                     <th>Age</th>
-                    <td><?= htmlspecialchars($user['age']); ?></td>
+                    <td id="profile-age"></td>
                 </tr>
                 <tr>
                     <th>Date of Birth</th>
-                    <td><?= htmlspecialchars($user['dob']); ?></td>
+                    <td id="profile-dob"></td>
                 </tr>
                 <tr>
                     <th>Gender</th>
-                    <td><?= htmlspecialchars($user['gender']); ?></td>
+                    <td id="profile-gender"></td>
                 </tr>
                 <tr>
                     <th>Address</th>
-                    <td><?= htmlspecialchars($user['address']); ?></td>
+                    <td id="profile-address"></td>
                 </tr>
             </table>
         </div>
     </div>
 </body>
+
 </html>

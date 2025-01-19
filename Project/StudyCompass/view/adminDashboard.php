@@ -1,42 +1,29 @@
 <?php
 session_start();
-if (!isset($_COOKIE['admin'])) {
-    header('location: login.php');
-}
-
-if (!isset($_COOKIE['admin']) && !isset($_SESSION['username'])) {
-    header('location: login.php');
+if (!isset($_SESSION['admin'])) {
+    header('location: ../view/login.php');
     exit();
 }
-
-$username = $_SESSION['username'];
-
 require_once('../model/authModel.php');
-$totalUsers = getTotalUsers();
-
-$admins = getAllAdmin($username);
-
-if ($admins === false) {
-    echo "Error: User data not found.";
-    exit();
-}
-
-$users = getAllUser($username);
-
-if ($users === false) {
-    echo "Error: User data not found.";
-    exit();
-}
-
 require_once('../model/newsModel.php');
-$totalNews = getTotalNews();
 
-$articles = getAllNews();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
 
-if ($articles === false) {
-    echo "Error: User data not found.";
+    if ($action === 'fetchAdmins') {
+        $admins = getAllAdmin();
+        echo json_encode($admins ?: []);
+        exit();
+    } elseif ($action === 'fetchUsers') {
+        $users = getAllUser();
+        echo json_encode($users ?: []);
+        exit();
+    }
     exit();
 }
+
+$totalUsers = getTotalUsers();
+$totalNews = getTotalNews();
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +34,65 @@ if ($articles === false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/styles.css">
+    <script>
+        function fetchAdmins() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    const admins = JSON.parse(this.responseText);
+                    renderTable("admin-table-body", admins);
+                }
+            };
+            xhr.send("action=fetchAdmins");
+        }
+
+        function fetchUsers() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    const users = JSON.parse(this.responseText);
+                    renderTable("user-table-body", users);
+                }
+            };
+
+            xhr.send("action=fetchUsers");
+        }
+
+        function renderTable(tableBodyId, data) {
+            const tableBody = document.getElementById(tableBodyId);
+            tableBody.innerHTML = "";
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5">No data found.</td></tr>`;
+                return;
+            }
+
+            data.forEach((item, index) => {
+                const row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.username}</td>
+                    <td>
+                        <a href="../controller/delete${tableBodyId.includes('admin') ? 'Admin' : 'User'}.php?id=${item.id}">Delete</a> |
+                        <a href="../controller/edit${tableBodyId.includes('admin') ? 'Admin' : 'User'}.php?id=${item.id}">Update</a>
+                    </td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        window.onload = function () {
+            fetchAdmins();
+            fetchUsers();
+        };
+    </script>
 </head>
 
 <body>
@@ -69,7 +115,7 @@ if ($articles === false) {
             <hr>
             <nav>
                 <ul>
-                    <li><a href="../view/adminRegister.php">Admin Management</a></li>
+                    <li><a href="../view/adminRegister.php">Admin Register</a></li>
                     <li><a href="#">Manage Universities</a></li>
                     <li><a href="#">Manage Scholarships</a></li>
                     <li><a href="#">Manage Events</a></li>
@@ -111,20 +157,7 @@ if ($articles === false) {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach ($admins as $admin) { ?>
-                            <tr>
-                                <td><?= $admin['id'] ?></td>
-                                <td><?= $admin['name'] ?></td>
-                                <td><?= $admin['email'] ?></td>
-                                <td><?= $admin['username'] ?></td>
-                                <td>
-                                    <a href="../controller/deleteAdmin.php?id=<?= $admin['id'] ?>">Delete</a> |
-                                    <a href="../controller/editAdmin.php?id=<?= $admin['id'] ?>">Update</a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
+                    <tbody id="admin-table-body"></tbody>
                 </table>
             </section>
             <section class="user-management">
@@ -139,20 +172,7 @@ if ($articles === false) {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach ($users as $user) { ?>
-                            <tr>
-                                <td><?= $user['id'] ?></td>
-                                <td><?= $user['name'] ?></td>
-                                <td><?= $user['email'] ?></td>
-                                <td><?= $user['username'] ?></td>
-                                <td>
-                                    <a href="../controller/deleteUser.php?id=<?= $user['id'] ?>">Delete</a> |
-                                    <a href="../controller/editUser.php?id=<?= $user['id'] ?>">Update</a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
+                    <tbody id="user-table-body"></tbody>
                 </table>
             </section>
         </main>

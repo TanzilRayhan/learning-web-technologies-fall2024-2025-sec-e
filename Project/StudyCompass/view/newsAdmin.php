@@ -34,7 +34,7 @@ $totalNews = getTotalNews();
         function fetchArticles() {
             const xhr = new XMLHttpRequest();
             xhr.open('REQUEST', 'newsAdmin.php?action=fetchArticles', true);
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     const response = JSON.parse(this.responseText);
                     if (response.error) {
@@ -69,7 +69,7 @@ $totalNews = getTotalNews();
             });
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             fetchArticles();
         });
     </script>
