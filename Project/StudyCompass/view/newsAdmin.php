@@ -6,15 +6,22 @@ if (!isset($_SESSION['admin'])) {
 }
 
 require_once('../model/newsModel.php');
-$totalNews = getTotalNews();
 
-$articles = getAllNews();
+if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'fetchArticles') {
+    $articles = getAllNews();
 
-if ($articles === false) {
-    echo "Error: User data not found.";
-    exit();
+    if ($articles) {
+        echo json_encode($articles);
+        exit();
+    } else {
+        echo json_encode(['error' => 'No articles found']);
+        exit();
+    }
 }
+
+$totalNews = getTotalNews();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +30,49 @@ if ($articles === false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Articles</title>
     <link rel="stylesheet" href="../assets/styles.css">
+    <script>
+        function fetchArticles() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('REQUEST', 'newsAdmin.php?action=fetchArticles', true);
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    const response = JSON.parse(this.responseText);
+                    if (response.error) {
+                        alert(response.error);
+                        return;
+                    }
+                    renderArticles(response);
+                }
+            };
+            xhr.send();
+        }
+
+        function renderArticles(articles) {
+            const articlesContainer = document.querySelector('.news-articles');
+            articlesContainer.innerHTML = "";
+
+            articles.forEach(article => {
+                const articleHTML = `
+                    <article class="news-article">
+                        <h2>${article.title}</h2>
+                        <button class="news-btn">${article.category}</button>
+                        <p>${article.content}</p>
+                        <a href="../controller/editNews.php?id=${article.id}">
+                            <button class="news-btn">Edit</button>
+                        </a>
+                        <a href="../controller/deleteNews.php?id=${article.id}">
+                            <button class="news-btn delete">Delete</button>
+                        </a>
+                    </article>
+                `;
+                articlesContainer.innerHTML += articleHTML;
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchArticles();
+        });
+    </script>
 </head>
 
 <body class="news-admin">
@@ -50,15 +100,6 @@ if ($articles === false) {
 
         <main class="news-main">
             <section class="news-articles">
-                <?php foreach ($articles as $article) { ?>
-                    <article class="news-article">
-                        <h2><?= $article['title']; ?></h2>
-                        <button class="news-btn"><?= $article['category']; ?></button>
-                        <p><?= $article['content']; ?></p>
-                        <a href="../controller/editNews.php?id=<?= $article['id'] ?>"><button class="news-btn">Edit</button></a>
-                        <a href="../controller/deleteNews.php?id=<?= $article['id']?>"><button class="news-btn delete">Delete</button></a>
-                    </article>
-                    <?php } ?>
             </section>
         </main>
     </div>
