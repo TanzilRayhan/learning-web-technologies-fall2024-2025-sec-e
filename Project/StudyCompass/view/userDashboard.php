@@ -77,7 +77,7 @@ if (!$user) {
             <hr>
             <nav>
                 <ul>
-                    <li><a href="#">Profile Information</a></li>
+                    <li><a href="../view/profile.php">Profile Information</a></li>
                     <li><a href="#">Saved Universities</a></li>
                     <li><a href="#">Scholarships</a></li>
                     <li><a href="#">Articles</a></li>
